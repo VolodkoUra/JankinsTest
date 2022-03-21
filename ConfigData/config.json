@@ -1,0 +1,8 @@
+{
+  "browser": "chrome",
+  "start-max": "--start-maximized",
+  "window-size": "--window-size=1200,800",
+  "chrome_certificate_errors": "--ignore-certificate-errors",
+  "width": "-width=1000",
+  "height": "-height=700"
+}
