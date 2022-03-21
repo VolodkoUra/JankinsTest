@@ -1,7 +1,7 @@
 from loguru import logger
 from PageObjects.AlertsPage import Alerts
 from PageObjects.MainPage import MainPage
-from TestClasses.test_base import start_setting
+
 
 
 class TestAlerts:

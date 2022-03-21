@@ -1,15 +1,20 @@
+import pytest
+
 from ConfigData.ConfigManager import ConfigManager
 from SattingDrivers.WebDriverFactory import WebdriverFactory
+
 
 
 class Drivers(object):
     __instance = None
     __driver = None
+    __browser = None
 
-    def __new__(cls):
+    def __new__(cls, browser):
         if cls.__instance is None:
+            cls.__browser = browser
             cls.__instance = super(Drivers, cls).__new__(cls)
-            cls.__driver = WebdriverFactory.getWebdriver(ConfigManager.parser_config('browser'))
+            cls.__driver = WebdriverFactory.getWebdriver(browser)
         return cls.__instance
 
     @staticmethod
@@ -17,7 +22,7 @@ class Drivers(object):
         if Drivers.__driver is not None:
             return Drivers.__driver
         else:
-            Drivers.__driver = WebdriverFactory.getWebdriver(ConfigManager.parser_config('browser'))
+            Drivers.__driver = WebdriverFactory.getWebdriver(Drivers.__browser)
         return Drivers.__driver
 
     @classmethod

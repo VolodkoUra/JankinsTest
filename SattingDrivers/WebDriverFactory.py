@@ -11,7 +11,7 @@ class WebdriverFactory:
     def getWebdriver(browserName):
         if browserName == 'chrome':
             options = chrome_options()
-            options.add_argument(ConfigManager.parser_config('browser'))
+            options.add_argument(browserName)
             options.add_argument(ConfigManager.parser_config('start-max'))
             options.add_argument(ConfigManager.parser_config('window-size'))
             options.add_argument(ConfigManager.parser_config('chrome_certificate_errors'))
@@ -22,8 +22,11 @@ class WebdriverFactory:
             return driver
         elif browserName == 'firefox':
             options = Options()
-            options.add_argument(ConfigManager.parser_config('width'))
+            options.add_argument(browserName)
             options.add_argument(ConfigManager.parser_config('height'))
+            options.add_argument('--headless')
+            options.add_argument('--no-sandbox')
+            options.add_argument('--disable-dev-shm-usage')
             driver = webdriver.Firefox(executable_path=GeckoDriverManager().install(), options=options)
             return driver
 
