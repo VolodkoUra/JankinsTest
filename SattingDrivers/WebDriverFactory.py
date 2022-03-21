@@ -15,11 +15,9 @@ class WebdriverFactory:
             options.add_argument(ConfigManager.parser_config('start-max'))
             options.add_argument(ConfigManager.parser_config('window-size'))
             options.add_argument(ConfigManager.parser_config('chrome_certificate_errors'))
-            options.add_argument("disable-infobars")
-            options.add_argument("disable-extensions")
-            options.add_argument("disable-gpu")
-            options.add_argument("disable-dev-shm-usage")
-            options.add_argument("no-sandbox")
+            options.add_argument('--headless')
+            options.add_argument('--no-sandbox')
+            options.add_argument('--disable-dev-shm-usage')
             driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
             return driver
         elif browserName == 'firefox':
